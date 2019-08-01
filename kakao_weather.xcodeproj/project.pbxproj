@@ -12,6 +12,9 @@
 		C162C2BA22F266BD000C346C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C162C2B822F266BD000C346C /* Main.storyboard */; };
 		C162C2BC22F266BF000C346C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C162C2BB22F266BF000C346C /* Assets.xcassets */; };
 		C162C2BF22F266BF000C346C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C162C2BD22F266BF000C346C /* LaunchScreen.storyboard */; };
+		C164661A22F27B9E00BBFFCD /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C164661922F27B9E00BBFFCD /* TableViewController.swift */; };
+		C164661C22F3149A00BBFFCD /* StretchyTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C164661B22F3149A00BBFFCD /* StretchyTableController.swift */; };
+		C164661E22F3332500BBFFCD /* StretchyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C164661D22F3332500BBFFCD /* StretchyController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +25,9 @@
 		C162C2BB22F266BF000C346C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C162C2BE22F266BF000C346C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C162C2C022F266BF000C346C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C164661922F27B9E00BBFFCD /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
+		C164661B22F3149A00BBFFCD /* StretchyTableController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StretchyTableController.swift; sourceTree = "<group>"; };
+		C164661D22F3332500BBFFCD /* StretchyController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StretchyController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,7 +62,10 @@
 			children = (
 				C162C2B422F266BD000C346C /* AppDelegate.swift */,
 				C162C2B622F266BD000C346C /* ViewController.swift */,
+				C164661922F27B9E00BBFFCD /* TableViewController.swift */,
 				C162C2B822F266BD000C346C /* Main.storyboard */,
+				C164661B22F3149A00BBFFCD /* StretchyTableController.swift */,
+				C164661D22F3332500BBFFCD /* StretchyController.swift */,
 				C162C2BB22F266BF000C346C /* Assets.xcassets */,
 				C162C2BD22F266BF000C346C /* LaunchScreen.storyboard */,
 				C162C2C022F266BF000C346C /* Info.plist */,
@@ -136,6 +145,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				C162C2B722F266BD000C346C /* ViewController.swift in Sources */,
+				C164661A22F27B9E00BBFFCD /* TableViewController.swift in Sources */,
+				C164661E22F3332500BBFFCD /* StretchyController.swift in Sources */,
+				C164661C22F3149A00BBFFCD /* StretchyTableController.swift in Sources */,
 				C162C2B522F266BD000C346C /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -285,6 +297,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = C7GUZQPQHZ;
 				INFOPLIST_FILE = kakao_weather/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -303,6 +316,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = C7GUZQPQHZ;
 				INFOPLIST_FILE = kakao_weather/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
