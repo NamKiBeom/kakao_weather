@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AA06B093E4C45596EC6E8533 /* Pods_kakao_weather.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE22684044950C46CF77F210 /* Pods_kakao_weather.framework */; };
 		C162C2B522F266BD000C346C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C162C2B422F266BD000C346C /* AppDelegate.swift */; };
 		C162C2B722F266BD000C346C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C162C2B622F266BD000C346C /* ViewController.swift */; };
 		C162C2BA22F266BD000C346C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C162C2B822F266BD000C346C /* Main.storyboard */; };
@@ -15,9 +16,19 @@
 		C164661A22F27B9E00BBFFCD /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C164661922F27B9E00BBFFCD /* TableViewController.swift */; };
 		C164661C22F3149A00BBFFCD /* StretchyTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C164661B22F3149A00BBFFCD /* StretchyTableController.swift */; };
 		C164661E22F3332500BBFFCD /* StretchyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C164661D22F3332500BBFFCD /* StretchyController.swift */; };
+		C1689F8122F3CD8900E647F9 /* StretchyViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1689F7F22F3CD8900E647F9 /* StretchyViewCell.swift */; };
+		C1689F8222F3CD8900E647F9 /* StretchyViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1689F8022F3CD8900E647F9 /* StretchyViewCell.xib */; };
+		C1689F8622F41B4B00E647F9 /* DiscriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1689F8422F41B4B00E647F9 /* DiscriptionCell.swift */; };
+		C1689F8722F41B4B00E647F9 /* DiscriptionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1689F8522F41B4B00E647F9 /* DiscriptionCell.xib */; };
+		C1689F8A22F41F0300E647F9 /* EtcViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1689F8822F41F0300E647F9 /* EtcViewCell.swift */; };
+		C1689F8B22F41F0300E647F9 /* EtcViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1689F8922F41F0300E647F9 /* EtcViewCell.xib */; };
+		C1689F9222F4248000E647F9 /* CollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1689F9022F4248000E647F9 /* CollectionCell.swift */; };
+		C1689F9322F4248000E647F9 /* CollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1689F9122F4248000E647F9 /* CollectionCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		148E5A3E2E9D2408E55E17B3 /* Pods-kakao_weather.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-kakao_weather.debug.xcconfig"; path = "Target Support Files/Pods-kakao_weather/Pods-kakao_weather.debug.xcconfig"; sourceTree = "<group>"; };
+		61BCC79618138A918D45B3B7 /* Pods-kakao_weather.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-kakao_weather.release.xcconfig"; path = "Target Support Files/Pods-kakao_weather/Pods-kakao_weather.release.xcconfig"; sourceTree = "<group>"; };
 		C162C2B122F266BD000C346C /* kakao_weather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = kakao_weather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C162C2B422F266BD000C346C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C162C2B622F266BD000C346C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -28,6 +39,15 @@
 		C164661922F27B9E00BBFFCD /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		C164661B22F3149A00BBFFCD /* StretchyTableController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StretchyTableController.swift; sourceTree = "<group>"; };
 		C164661D22F3332500BBFFCD /* StretchyController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StretchyController.swift; sourceTree = "<group>"; };
+		C1689F7F22F3CD8900E647F9 /* StretchyViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StretchyViewCell.swift; sourceTree = "<group>"; };
+		C1689F8022F3CD8900E647F9 /* StretchyViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StretchyViewCell.xib; sourceTree = "<group>"; };
+		C1689F8422F41B4B00E647F9 /* DiscriptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscriptionCell.swift; sourceTree = "<group>"; };
+		C1689F8522F41B4B00E647F9 /* DiscriptionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DiscriptionCell.xib; sourceTree = "<group>"; };
+		C1689F8822F41F0300E647F9 /* EtcViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EtcViewCell.swift; sourceTree = "<group>"; };
+		C1689F8922F41F0300E647F9 /* EtcViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EtcViewCell.xib; sourceTree = "<group>"; };
+		C1689F9022F4248000E647F9 /* CollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionCell.swift; sourceTree = "<group>"; };
+		C1689F9122F4248000E647F9 /* CollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CollectionCell.xib; sourceTree = "<group>"; };
+		CE22684044950C46CF77F210 /* Pods_kakao_weather.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_kakao_weather.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,17 +55,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AA06B093E4C45596EC6E8533 /* Pods_kakao_weather.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A169284EC0376F77B1B6FBAE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CE22684044950C46CF77F210 /* Pods_kakao_weather.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		C162C2A822F266BD000C346C = {
 			isa = PBXGroup;
 			children = (
 				C162C2B322F266BD000C346C /* kakao_weather */,
 				C162C2B222F266BD000C346C /* Products */,
+				D5AE98BC38BBF862E000C296 /* Pods */,
+				A169284EC0376F77B1B6FBAE /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -64,13 +95,38 @@
 				C162C2B622F266BD000C346C /* ViewController.swift */,
 				C164661922F27B9E00BBFFCD /* TableViewController.swift */,
 				C162C2B822F266BD000C346C /* Main.storyboard */,
-				C164661B22F3149A00BBFFCD /* StretchyTableController.swift */,
+				C1689F8322F418D100E647F9 /* cell */,
 				C164661D22F3332500BBFFCD /* StretchyController.swift */,
+				C164661B22F3149A00BBFFCD /* StretchyTableController.swift */,
 				C162C2BB22F266BF000C346C /* Assets.xcassets */,
 				C162C2BD22F266BF000C346C /* LaunchScreen.storyboard */,
 				C162C2C022F266BF000C346C /* Info.plist */,
 			);
 			path = kakao_weather;
+			sourceTree = "<group>";
+		};
+		C1689F8322F418D100E647F9 /* cell */ = {
+			isa = PBXGroup;
+			children = (
+				C1689F8822F41F0300E647F9 /* EtcViewCell.swift */,
+				C1689F8922F41F0300E647F9 /* EtcViewCell.xib */,
+				C1689F9022F4248000E647F9 /* CollectionCell.swift */,
+				C1689F9122F4248000E647F9 /* CollectionCell.xib */,
+				C1689F8422F41B4B00E647F9 /* DiscriptionCell.swift */,
+				C1689F8522F41B4B00E647F9 /* DiscriptionCell.xib */,
+				C1689F8022F3CD8900E647F9 /* StretchyViewCell.xib */,
+				C1689F7F22F3CD8900E647F9 /* StretchyViewCell.swift */,
+			);
+			path = cell;
+			sourceTree = "<group>";
+		};
+		D5AE98BC38BBF862E000C296 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				148E5A3E2E9D2408E55E17B3 /* Pods-kakao_weather.debug.xcconfig */,
+				61BCC79618138A918D45B3B7 /* Pods-kakao_weather.release.xcconfig */,
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -80,9 +136,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C162C2C322F266BF000C346C /* Build configuration list for PBXNativeTarget "kakao_weather" */;
 			buildPhases = (
+				9BCD321B27323EF837A37373 /* [CP] Check Pods Manifest.lock */,
 				C162C2AD22F266BD000C346C /* Sources */,
 				C162C2AE22F266BD000C346C /* Frameworks */,
 				C162C2AF22F266BD000C346C /* Resources */,
+				2900C17B68EAA9B66FA69B24 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -133,21 +191,71 @@
 			files = (
 				C162C2BF22F266BF000C346C /* LaunchScreen.storyboard in Resources */,
 				C162C2BC22F266BF000C346C /* Assets.xcassets in Resources */,
+				C1689F8222F3CD8900E647F9 /* StretchyViewCell.xib in Resources */,
+				C1689F8B22F41F0300E647F9 /* EtcViewCell.xib in Resources */,
+				C1689F8722F41B4B00E647F9 /* DiscriptionCell.xib in Resources */,
+				C1689F9322F4248000E647F9 /* CollectionCell.xib in Resources */,
 				C162C2BA22F266BD000C346C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		2900C17B68EAA9B66FA69B24 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-kakao_weather/Pods-kakao_weather-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-kakao_weather/Pods-kakao_weather-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-kakao_weather/Pods-kakao_weather-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9BCD321B27323EF837A37373 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-kakao_weather-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		C162C2AD22F266BD000C346C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C1689F8122F3CD8900E647F9 /* StretchyViewCell.swift in Sources */,
 				C162C2B722F266BD000C346C /* ViewController.swift in Sources */,
+				C1689F9222F4248000E647F9 /* CollectionCell.swift in Sources */,
 				C164661A22F27B9E00BBFFCD /* TableViewController.swift in Sources */,
+				C1689F8A22F41F0300E647F9 /* EtcViewCell.swift in Sources */,
 				C164661E22F3332500BBFFCD /* StretchyController.swift in Sources */,
 				C164661C22F3149A00BBFFCD /* StretchyTableController.swift in Sources */,
+				C1689F8622F41B4B00E647F9 /* DiscriptionCell.swift in Sources */,
 				C162C2B522F266BD000C346C /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -292,6 +400,7 @@
 		};
 		C162C2C422F266BF000C346C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 148E5A3E2E9D2408E55E17B3 /* Pods-kakao_weather.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -311,6 +420,7 @@
 		};
 		C162C2C522F266BF000C346C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 61BCC79618138A918D45B3B7 /* Pods-kakao_weather.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

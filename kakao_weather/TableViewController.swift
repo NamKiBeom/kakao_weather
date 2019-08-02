@@ -14,6 +14,8 @@ class TableViewController: UITableViewController {
     
     var matchingItems:[MKMapItem] = []
     var mapView: MKMapView? = nil
+    var latselect = 1.0
+    var lonselect = 1.0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,9 +39,17 @@ class TableViewController: UITableViewController {
         
         //선택 동작 - 위도 경도 추출
         let selectedItem = matchingItems[indexPath.row].placemark
-        print(selectedItem.coordinate.latitude)
-        print(selectedItem.coordinate.longitude)
+        latselect = selectedItem.coordinate.latitude
+        lonselect = selectedItem.coordinate.longitude
         
+        performSegue(withIdentifier: "back", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let rvc = segue.destination as? StretchyController{
+            rvc.lat = latselect
+            rvc.lon = lonselect
+        }
     }
 
 }
