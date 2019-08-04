@@ -8,6 +8,8 @@
 
 import UIKit
 import MapKit
+import Alamofire
+
 
 class TableViewController: UITableViewController {
     var resultSearchController:UISearchController? = nil
@@ -16,6 +18,7 @@ class TableViewController: UITableViewController {
     var mapView: MKMapView? = nil
     var latselect = 1.0
     var lonselect = 1.0
+    var subtitle = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,8 +33,8 @@ class TableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell")!
         let selectedItem = matchingItems[indexPath.row].placemark
         //셀에 표시되는 검색결과의 String 값
-        cell.textLabel?.text = selectedItem.title
-        cell.detailTextLabel?.text = ""
+        cell.textLabel?.text = selectedItem.name
+        cell.detailTextLabel?.text = selectedItem.title
         return cell
     }
     
@@ -41,15 +44,40 @@ class TableViewController: UITableViewController {
         let selectedItem = matchingItems[indexPath.row].placemark
         latselect = selectedItem.coordinate.latitude
         lonselect = selectedItem.coordinate.longitude
-        
+        subtitle = selectedItem.name!
         performSegue(withIdentifier: "back", sender: self)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let rvc = segue.destination as? StretchyController{
-            rvc.lat = latselect
-            rvc.lon = lonselect
+            rvc.LocateTitle = subtitle
+            rvc.lat = self.latselect
+            rvc.lon = self.lonselect
         }
+    }
+    
+    func parseAddress(selectedItem:MKPlacemark) -> String {
+        // put a space between "4" and "Melrose Place"
+        let firstSpace = (selectedItem.subThoroughfare != nil && selectedItem.thoroughfare != nil) ? " " : ""
+        // put a comma between street and city/state
+        let comma = (selectedItem.subThoroughfare != nil || selectedItem.thoroughfare != nil) && (selectedItem.subAdministrativeArea != nil || selectedItem.administrativeArea != nil) ? ", " : ""
+        // put a space between "Washington" and "DC"
+        let secondSpace = (selectedItem.subAdministrativeArea != nil && selectedItem.administrativeArea != nil) ? " " : ""
+        let addressLine = String(
+            format:"%@%@%@%@%@%@%@",
+            // state
+            selectedItem.administrativeArea ?? "",
+            // city
+            selectedItem.locality ?? "",
+            secondSpace,
+            // street name
+            selectedItem.thoroughfare ?? "",
+            comma,
+            // street number
+            selectedItem.subThoroughfare ?? "",
+            firstSpace
+        )
+        return addressLine
     }
 
 }

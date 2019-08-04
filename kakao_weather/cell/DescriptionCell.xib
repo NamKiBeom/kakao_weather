@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" restorationIdentifier="DescriptionCell" selectionStyle="none" indentationWidth="10" reuseIdentifier="DescriptionCell" id="KGk-i7-Jjw" customClass="DescriptionCell" customModule="kakao_weather" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="69.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PXM-Lz-W9t">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="0.5"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="0.5" id="EnR-Q6-iN1"/>
+                        </constraints>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sQy-zc-fJl">
+                        <rect key="frame" x="0.0" y="69" width="375" height="0.5"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="0.5" id="QWs-Jg-BMn"/>
+                        </constraints>
+                    </view>
+                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="오늘: 날씨 한때 흐림, 최고 기온-34도, 최저기온-25도입니다." textAlignment="natural" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VpT-EL-Df1">
+                        <rect key="frame" x="18" y="8" width="339" height="53.5"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                    </textView>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="sQy-zc-fJl" secondAttribute="trailing" id="2KT-xs-6DL"/>
+                    <constraint firstItem="VpT-EL-Df1" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="18" id="7d7-He-5fU"/>
+                    <constraint firstAttribute="bottom" secondItem="sQy-zc-fJl" secondAttribute="bottom" id="DWJ-s6-8lF"/>
+                    <constraint firstItem="VpT-EL-Df1" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="Hti-WI-KSs"/>
+                    <constraint firstItem="PXM-Lz-W9t" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="SDZ-UF-J4D"/>
+                    <constraint firstItem="sQy-zc-fJl" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Zhb-OZ-UhL"/>
+                    <constraint firstItem="PXM-Lz-W9t" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="oof-YZ-ZgO"/>
+                    <constraint firstAttribute="trailing" secondItem="PXM-Lz-W9t" secondAttribute="trailing" id="sLx-6P-OfU"/>
+                    <constraint firstItem="VpT-EL-Df1" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="sjr-yz-7UP"/>
+                    <constraint firstItem="VpT-EL-Df1" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="ySW-Yr-G4N"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="DescriptionText" destination="VpT-EL-Df1" id="QM9-IS-nBE"/>
+            </connections>
+            <point key="canvasLocation" x="47.10144927536232" y="45.535714285714285"/>
+        </tableViewCell>
+    </objects>
+</document>

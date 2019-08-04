@@ -7,9 +7,62 @@
 //
 
 import UIKit
+import Alamofire
+
+struct clouds:Codable{
+    var all:Int
+}
+struct coord:Codable{
+    var lat:Double
+    var lon:Double
+}
+struct main:Codable{
+    var humidity:Int
+    var pressure:Int
+    var temp:Double
+    var temp_max:Double
+    var temp_min:Double
+}
+struct sys:Codable{
+    var country:String
+    var id:Int
+    var message:Double
+    var sunrise:Int
+    var sunset:Int
+    var type:Int
+}
+struct weather:Codable{
+    var description:String
+    var icon:String
+    var id:Int
+    var main:String
+}
+struct wind:Codable{
+    var deg:Double
+    var speed:Double
+}
+struct current:Codable{
+    var base:String
+    var clouds:clouds
+    var cod:Int
+    var coord:coord
+    var dt:Int
+    var id:Int
+    var main:main
+    var name:String
+    var sys:sys
+    var timezone:Int
+    var visibility:Int
+    var weather:[weather]
+    var wind:wind
+}
+
+var currentinfo = [current]()
+var 요약 = ""
 
 class StretchyController: UIViewController,UICollectionViewDataSource, UICollectionViewDelegate {
     fileprivate let cellId = "cellId"
+    var LocateTitle = ""
     var lat = 1.0
     var lon = 1.0
     
@@ -19,126 +72,213 @@ class StretchyController: UIViewController,UICollectionViewDataSource, UICollect
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        print(lat)
-        print(lon)
-        
-        let StretchyTable = StretchyTableController()
-        self.addChild(StretchyTable)
-        //윗 부분 여백을 없애기 위한 좌표 지정
-        StretchyTable.tableView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height)
-        view.addSubview(StretchyTable.tableView)
-        
-        //collectionView 셀 속성 지정
-        let layout : UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        //간격 조정
-        layout.sectionInset = .init(top: 5, left: 10, bottom: 5, right: 10)
-        layout.itemSize = CGSize(width: 65 , height: 110)
-        layout.scrollDirection = .horizontal
-        
-        //collectionView 변수 할당 및 설정
-        let collection:UICollectionView = UICollectionView(frame:CGRect(x: 0, y: 360, width: view.frame.width, height: 120),collectionViewLayout: layout)
-        let cellNibs = UINib.init(nibName: "CollectionCell", bundle: nil)
-        collection.register(cellNibs, forCellWithReuseIdentifier: "CollectionCell")
-        collection.delegate = self
-        collection.dataSource = self
-        collection.showsHorizontalScrollIndicator = false
-        collection.backgroundColor = UIColor.init(netHex: 0x4aa8d8)
-        view.addSubview(collection)
-        
-        //UIView 변수 할당 및 설정
-        let testUIView = UIView()
-        testUIView.backgroundColor = UIColor.init(netHex: 0x4aa8d8)
-        testUIView.contentMode = .scaleToFill
-        testUIView.clipsToBounds = true
-        testUIView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 359)
-        
-        //toolbar
-        let toolbar = UIToolbar()
-        toolbar.frame = CGRect(x: 0, y: 735, width: view.frame.width, height: 55)
-        let transButton = UIBarButtonItem(title: "재설정", style: .plain, target: self, action: #selector(reselectLocation))
-        let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
-        toolbar.setItems([spaceButton,transButton], animated: false)
-        toolbar.barTintColor = testUIView.backgroundColor
-            toolbar.tintColor = .white
-        let topBorder = CALayer()
-        topBorder.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 0.5)
-        topBorder.backgroundColor = UIColor.lightText.cgColor
-        toolbar.layer.addSublayer(topBorder)
-        
-        view.addSubview(toolbar)
-        
-        /////UILabel 코드로 설정
-        let TextMain = UILabel(frame: CGRect(x: 0, y: 100, width: view.frame.width, height: 50))
-        TextMain.text = "인천광역시"
-        TextMain.textColor = .white
-        TextMain.shadowColor = .gray
-        TextMain.font = .systemFont(ofSize: 30, weight: .semibold)
-        
-        let mainDescription = UILabel(frame: CGRect(x: 0, y: 140, width: view.frame.width, height: 30))
-        mainDescription.text = "대체로 맑음"
-        mainDescription.textColor = .white
-        mainDescription.shadowColor = .gray
-        mainDescription.font = .systemFont(ofSize: 15, weight: .medium)
-        
-        let tempo = UILabel(frame: CGRect(x: 0, y: 170, width: view.frame.width, height: 100))
-        tempo.text = "34º"
-        tempo.textColor = .white
-        tempo.shadowColor = .gray
-        tempo.font = .systemFont(ofSize: 90, weight: .thin)
-        
-        let dayLabel = UILabel(frame: CGRect(x: 20, y: 315, width: 55, height: 30))
-        dayLabel.text = "금요일"
-        dayLabel.textColor = .white
-        dayLabel.shadowColor = .gray
-        dayLabel.font = .systemFont(ofSize: 20, weight: .medium)
-        
-        let todayLabel = UILabel(frame: CGRect(x: 80, y: 316, width: 55, height: 30))
-        todayLabel.text = "오늘"
-        todayLabel.textColor = .white
-        todayLabel.shadowColor = .gray
-        todayLabel.font = .systemFont(ofSize: 15, weight: .medium)
-        
-        let minTempo = UILabel(frame: CGRect(x: 325, y: 315, width: 55, height: 30))
-        minTempo.text = "25"
-        minTempo.textColor = .lightText
-        minTempo.font = .systemFont(ofSize: 20, weight: .medium)
-        
-        let maxTempo = UILabel(frame: CGRect(x: 275, y: 315, width: 55, height: 30))
-        maxTempo.text = "34"
-        maxTempo.textColor = .white
-        maxTempo.font = .systemFont(ofSize: 20, weight: .medium)
-        
-        testUIView.addSubview(TextMain)
-        testUIView.addSubview(mainDescription)
-        testUIView.addSubview(tempo)
-        testUIView.addSubview(dayLabel)
-        testUIView.addSubview(todayLabel)
-        testUIView.addSubview(minTempo)
-        testUIView.addSubview(maxTempo)
-        TextMain.textAlignment = .center
-        mainDescription.textAlignment = .center
-        tempo.textAlignment = .center
-        
-        view.addSubview(testUIView)
-        
-        //top 경계선
-        let separatorLine = UIView()
-        separatorLine.frame = CGRect(x: 0, y: 359.5, width: view.frame.width, height: 0.5)
-        separatorLine.backgroundColor = .lightText
-        view.addSubview(separatorLine)
-        
-        //bottom 경계선
-        let separatorLineB = UIView()
-        separatorLineB.frame = CGRect(x: 0, y: 479.5, width: view.frame.width, height: 0.5)
-        separatorLineB.backgroundColor = .lightText
-        view.addSubview(separatorLineB)
-        
-        //tableViewController에 추가
-        StretchyTable.StUIView = testUIView
-        StretchyTable.StcollectionView = collection
-        StretchyTable.separator = separatorLine
-        StretchyTable.separatorB = separatorLineB
+        currentinfo.removeAll()
+        let url = "http://api.openweathermap.org/data/2.5/weather?lat=\(lat)&lon=\(lon)&APPID=2ac1bbe21fb06a301149057f64c0a926"
+        print(view.frame.height)
+        let req = Alamofire.request(url, method: .post, encoding: URLEncoding.methodDependent, headers: [:]).responseString { (response) in
+            let resData = response.result.value!.data(using: .utf8)
+            do{
+                let data = try JSONDecoder().decode(current.self, from: resData!)
+                currentinfo.append(data)
+                
+                let StretchyTable = StretchyTableController()
+                self.addChild(StretchyTable)
+                //윗 부분 여백을 없애기 위한 좌표 지정
+                StretchyTable.tableView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height)
+                self.view.addSubview(StretchyTable.tableView)
+                
+                //collectionView 셀 속성 지정
+                let layout : UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+                //간격 조정
+                layout.sectionInset = .init(top: 5*self.view.frame.height/812, left: 10, bottom: 5*self.view.frame.height/812, right: 10)
+                layout.itemSize = CGSize(width: 65*self.view.frame.width/375.0 , height: 110*self.view.frame.height/812.0)
+                layout.scrollDirection = .horizontal
+                
+                //collectionView 변수 할당 및 설정
+                let collection:UICollectionView = UICollectionView(frame:CGRect(x: 0, y: 360*self.view.frame.height/812.0, width: self.view.frame.width, height: 120*self.view.frame.height/812.0),collectionViewLayout: layout)
+                let cellNibs = UINib.init(nibName: "CollectionCell", bundle: nil)
+                collection.register(cellNibs, forCellWithReuseIdentifier: "CollectionCell")
+                collection.delegate = self
+                collection.dataSource = self
+                collection.showsHorizontalScrollIndicator = false
+                collection.backgroundColor = UIColor.init(netHex: 0x4aa8d8)
+                self.view.addSubview(collection)
+                
+                //UIView 변수 할당 및 설정
+                let testUIView = UIView()
+                testUIView.backgroundColor = UIColor.init(netHex: 0x4aa8d8)
+                testUIView.contentMode = .scaleToFill
+                testUIView.clipsToBounds = true
+                testUIView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: 359*self.view.frame.height/812.0)
+                
+                /////UILabel 코드로 설정
+                //메인 타이틀(위치)
+                let TextMain = UILabel(frame: CGRect(x: 0, y: 100*self.view.frame.height/812.0, width: self.view.frame.width, height: 50*self.view.frame.height/812.0))
+                TextMain.text = self.LocateTitle
+                TextMain.textColor = .white
+                TextMain.shadowColor = .gray
+                TextMain.font = .systemFont(ofSize: 30*self.view.frame.height/812.0, weight: .semibold)
+                
+                let mainDescription = UILabel(frame: CGRect(x: 0, y: 140*self.view.frame.height/812.0, width: self.view.frame.width, height: 30*self.view.frame.height/812.0))
+                if data.weather[0].main == "Thunderstorm"{
+                    mainDescription.text = "뇌우"
+                    요약 = "뇌우"
+                }
+                else if data.weather[0].main == "Drizzle"{
+                    mainDescription.text = "이슬비"
+                    요약 = "이슬비"
+                }
+                else if data.weather[0].main == "Rain"{
+                    mainDescription.text = "비"
+                    요약 = "비"
+                }
+                else if data.weather[0].main == "Snow"{
+                    mainDescription.text = "눈"
+                    요약 = "눈"
+                }
+                else if data.weather[0].main == "Clear"{
+                    mainDescription.text = "대체로 맑음"
+                    요약 = "대체로 맑음"
+                }
+                else if data.weather[0].main == "Clouds"{
+                    mainDescription.text = "구름"
+                    요약 = "구름"
+                }
+                else if data.weather[0].main == "Smoke"{
+                    mainDescription.text = "연기"
+                    요약 = "연기"
+                }
+                else if data.weather[0].main == "Haze" || data.weather[0].main == "fog" || data.weather[0].main == "Mist"{
+                    mainDescription.text = "안개"
+                    요약 = "안개"
+                }
+                else if data.weather[0].main == "Dust" || data.weather[0].main == "Send"{
+                    mainDescription.text = "미세먼지 많음"
+                    요약 = "미세먼지 많음"
+                }
+                else if data.weather[0].main == "Ash"{
+                    mainDescription.text = "화산재"
+                    요약 = "화산재"
+                }
+                else if data.weather[0].main == "Squall"{
+                    mainDescription.text = "돌풍"
+                    요약 = "돌풍"
+                }
+                else if data.weather[0].main == "Tornado"{
+                    mainDescription.text = "폭풍"
+                    요약 = "폭풍"
+                }
+                mainDescription.textColor = .white
+                mainDescription.shadowColor = .gray
+                mainDescription.font = .systemFont(ofSize: 15, weight: .medium)
+                
+                let tempo = UILabel(frame: CGRect(x: 0, y: 170*self.view.frame.height/812, width: self.view.frame.width, height: 100*self.view.frame.height/812))
+                tempo.text = "\(Int(ceil(data.main.temp-273.15)))"+"º"
+                tempo.textColor = .white
+                tempo.shadowColor = .gray
+                tempo.font = .systemFont(ofSize: 90*self.view.frame.height/812.0, weight: .thin)
+                
+                let cal = Calendar(identifier: .gregorian)
+                let now = Date()
+                let comps = cal.dateComponents([.weekday], from: now)
+                
+                let dayLabel = UILabel(frame: CGRect(x: 20*self.view.frame.width/375.0, y: 315*self.view.frame.height/812.0, width: 55*self.view.frame.width/375.0, height: 30*self.view.frame.height/812.0))
+                if comps.weekday! == 1{
+                    dayLabel.text = "일요일"
+                }
+                else if comps.weekday! == 2{
+                    dayLabel.text = "월요일"
+                }
+                else if comps.weekday! == 3{
+                    dayLabel.text = "화요일"
+                }
+                else if comps.weekday! == 4{
+                    dayLabel.text = "수요일"
+                }
+                else if comps.weekday! == 5{
+                    dayLabel.text = "목요일"
+                }
+                else if comps.weekday! == 6{
+                    dayLabel.text = "금요일"
+                }
+                else if comps.weekday! == 7{
+                    dayLabel.text = "토요일"
+                }
+                dayLabel.textColor = .white
+                dayLabel.shadowColor = .gray
+                dayLabel.font = .systemFont(ofSize: 20*self.view.frame.height/812.0, weight: .medium)
+                
+                let todayLabel = UILabel(frame: CGRect(x: 80*self.view.frame.width/375.0, y: 316*self.view.frame.height/812.0, width: 55*self.view.frame.width/375.0, height: 30*self.view.frame.height/812.0))
+                todayLabel.text = "오늘"
+                todayLabel.textColor = .white
+                todayLabel.shadowColor = .gray
+                todayLabel.font = .systemFont(ofSize: 15*self.view.frame.height/812.0, weight: .medium)
+                
+                let minTempo = UILabel(frame: CGRect(x: 325*self.view.frame.width/375.0, y: 315*self.view.frame.height/812.0, width: 55*self.view.frame.width/375.0, height: 30*self.view.frame.height/812.0))
+                minTempo.text = "\(Int(ceil(data.main.temp_min-273.15)))"
+                minTempo.textColor = .lightText
+                minTempo.font = .systemFont(ofSize: 20*self.view.frame.height/812.0, weight: .medium)
+                
+                let maxTempo = UILabel(frame: CGRect(x: 275*self.view.frame.width/375.0, y: 315*self.view.frame.height/812.0, width: 55*self.view.frame.width/375.0, height: 30*self.view.frame.height/812.0))
+                maxTempo.text = "\(Int(ceil(data.main.temp_max-273.15)))"
+                maxTempo.textColor = .white
+                maxTempo.font = .systemFont(ofSize: 20*self.view.frame.height/812.0, weight: .medium)
+                
+                testUIView.addSubview(TextMain)
+                testUIView.addSubview(mainDescription)
+                testUIView.addSubview(tempo)
+                testUIView.addSubview(dayLabel)
+                testUIView.addSubview(todayLabel)
+                testUIView.addSubview(minTempo)
+                testUIView.addSubview(maxTempo)
+                //택스트 중앙 배치
+                TextMain.textAlignment = .center
+                mainDescription.textAlignment = .center
+                tempo.textAlignment = .center
+                
+                self.view.addSubview(testUIView)
+                
+                //toolbar
+                let toolbar = UIToolbar()
+                
+                if self.view.frame.height>=812{
+                    toolbar.frame = CGRect(x: 0, y: 733*self.view.frame.height/812.0, width: self.view.frame.width, height: 60*self.view.frame.height/812.0)
+                }else{
+                    toolbar.frame = CGRect(x: 0, y: 768*self.view.frame.height/812.0, width: self.view.frame.width, height: 45*self.view.frame.height/812.0)
+                }
+                let transButton = UIBarButtonItem(title: "재설정", style: .plain, target: self, action: #selector(self.reselectLocation))
+                transButton.accessibilityFrame = CGRect(x: 0, y: 5, width: 30, height: 30)
+                let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
+                toolbar.setItems([spaceButton,transButton], animated: false)
+                toolbar.barTintColor = testUIView.backgroundColor
+                toolbar.tintColor = .white
+                let topBorder = CALayer()
+                topBorder.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: 0.5)
+                topBorder.backgroundColor = UIColor.lightText.cgColor
+                toolbar.layer.addSublayer(topBorder)
+                self.view.addSubview(toolbar)
+                
+                //top 경계선
+                let separatorLine = UIView()
+                separatorLine.frame = CGRect(x: 0, y: 359.5*self.view.frame.height/812.0, width: self.view.frame.width, height: 0.5)
+                separatorLine.backgroundColor = .lightText
+                self.view.addSubview(separatorLine)
+                
+                //bottom 경계선
+                let separatorLineB = UIView()
+                separatorLineB.frame = CGRect(x: 0, y: 479.5*self.view.frame.height/812.0, width: self.view.frame.width, height: 0.5)
+                separatorLineB.backgroundColor = .lightText
+                self.view.addSubview(separatorLineB)
+                
+                //tableViewController에 추가 - ScrollView 연동
+                StretchyTable.StUIView = testUIView
+                StretchyTable.StcollectionView = collection
+                StretchyTable.separator = separatorLine
+                StretchyTable.separatorB = separatorLineB
+            }catch{
+                print(error)
+            }
+        }
     }
 
     //화면전환

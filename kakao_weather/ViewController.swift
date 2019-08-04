@@ -17,6 +17,8 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        mapView.isHidden = true
         //위치 셋팅
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -32,8 +34,11 @@ class ViewController: UIViewController {
         //검색창 구성 및 탐색 모음 포함
         let searchBar = resultSearchController!.searchBar
         searchBar.sizeToFit()
-        searchBar.placeholder = "Search for places"
+        searchBar.placeholder = "위치를 검색해주세요!"
         navigationItem.titleView = resultSearchController?.searchBar
+        searchBar.tintColor = .white
+        searchBar.barTintColor = .lightGray
+        searchBar.barStyle = .black
         
         //검색 동작 설정
         resultSearchController?.hidesNavigationBarDuringPresentation = false

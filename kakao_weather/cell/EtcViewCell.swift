@@ -13,6 +13,7 @@ class EtcViewCell: UITableViewCell {
     @IBOutlet weak var smallLabel2: UILabel!
     @IBOutlet weak var bigLabel1: UILabel!
     @IBOutlet weak var bigLabel2: UILabel!
+    @IBOutlet weak var bottom: UIView!
     
     
     override func awakeFromNib() {

@@ -18,12 +18,12 @@
 		C164661E22F3332500BBFFCD /* StretchyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C164661D22F3332500BBFFCD /* StretchyController.swift */; };
 		C1689F8122F3CD8900E647F9 /* StretchyViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1689F7F22F3CD8900E647F9 /* StretchyViewCell.swift */; };
 		C1689F8222F3CD8900E647F9 /* StretchyViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1689F8022F3CD8900E647F9 /* StretchyViewCell.xib */; };
-		C1689F8622F41B4B00E647F9 /* DiscriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1689F8422F41B4B00E647F9 /* DiscriptionCell.swift */; };
-		C1689F8722F41B4B00E647F9 /* DiscriptionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1689F8522F41B4B00E647F9 /* DiscriptionCell.xib */; };
 		C1689F8A22F41F0300E647F9 /* EtcViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1689F8822F41F0300E647F9 /* EtcViewCell.swift */; };
 		C1689F8B22F41F0300E647F9 /* EtcViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1689F8922F41F0300E647F9 /* EtcViewCell.xib */; };
 		C1689F9222F4248000E647F9 /* CollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1689F9022F4248000E647F9 /* CollectionCell.swift */; };
 		C1689F9322F4248000E647F9 /* CollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1689F9122F4248000E647F9 /* CollectionCell.xib */; };
+		C1A9F5DC22F6E4AD00CB8E87 /* DescriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A9F5DA22F6E4AD00CB8E87 /* DescriptionCell.swift */; };
+		C1A9F5DD22F6E4AD00CB8E87 /* DescriptionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1A9F5DB22F6E4AD00CB8E87 /* DescriptionCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,12 +41,12 @@
 		C164661D22F3332500BBFFCD /* StretchyController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StretchyController.swift; sourceTree = "<group>"; };
 		C1689F7F22F3CD8900E647F9 /* StretchyViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StretchyViewCell.swift; sourceTree = "<group>"; };
 		C1689F8022F3CD8900E647F9 /* StretchyViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StretchyViewCell.xib; sourceTree = "<group>"; };
-		C1689F8422F41B4B00E647F9 /* DiscriptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscriptionCell.swift; sourceTree = "<group>"; };
-		C1689F8522F41B4B00E647F9 /* DiscriptionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DiscriptionCell.xib; sourceTree = "<group>"; };
 		C1689F8822F41F0300E647F9 /* EtcViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EtcViewCell.swift; sourceTree = "<group>"; };
 		C1689F8922F41F0300E647F9 /* EtcViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EtcViewCell.xib; sourceTree = "<group>"; };
 		C1689F9022F4248000E647F9 /* CollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionCell.swift; sourceTree = "<group>"; };
 		C1689F9122F4248000E647F9 /* CollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CollectionCell.xib; sourceTree = "<group>"; };
+		C1A9F5DA22F6E4AD00CB8E87 /* DescriptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionCell.swift; sourceTree = "<group>"; };
+		C1A9F5DB22F6E4AD00CB8E87 /* DescriptionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DescriptionCell.xib; sourceTree = "<group>"; };
 		CE22684044950C46CF77F210 /* Pods_kakao_weather.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_kakao_weather.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -112,8 +112,8 @@
 				C1689F8922F41F0300E647F9 /* EtcViewCell.xib */,
 				C1689F9022F4248000E647F9 /* CollectionCell.swift */,
 				C1689F9122F4248000E647F9 /* CollectionCell.xib */,
-				C1689F8422F41B4B00E647F9 /* DiscriptionCell.swift */,
-				C1689F8522F41B4B00E647F9 /* DiscriptionCell.xib */,
+				C1A9F5DA22F6E4AD00CB8E87 /* DescriptionCell.swift */,
+				C1A9F5DB22F6E4AD00CB8E87 /* DescriptionCell.xib */,
 				C1689F8022F3CD8900E647F9 /* StretchyViewCell.xib */,
 				C1689F7F22F3CD8900E647F9 /* StretchyViewCell.swift */,
 			);
@@ -189,11 +189,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C1A9F5DD22F6E4AD00CB8E87 /* DescriptionCell.xib in Resources */,
 				C162C2BF22F266BF000C346C /* LaunchScreen.storyboard in Resources */,
 				C162C2BC22F266BF000C346C /* Assets.xcassets in Resources */,
 				C1689F8222F3CD8900E647F9 /* StretchyViewCell.xib in Resources */,
 				C1689F8B22F41F0300E647F9 /* EtcViewCell.xib in Resources */,
-				C1689F8722F41B4B00E647F9 /* DiscriptionCell.xib in Resources */,
 				C1689F9322F4248000E647F9 /* CollectionCell.xib in Resources */,
 				C162C2BA22F266BD000C346C /* Main.storyboard in Resources */,
 			);
@@ -252,10 +252,10 @@
 				C162C2B722F266BD000C346C /* ViewController.swift in Sources */,
 				C1689F9222F4248000E647F9 /* CollectionCell.swift in Sources */,
 				C164661A22F27B9E00BBFFCD /* TableViewController.swift in Sources */,
+				C1A9F5DC22F6E4AD00CB8E87 /* DescriptionCell.swift in Sources */,
 				C1689F8A22F41F0300E647F9 /* EtcViewCell.swift in Sources */,
 				C164661E22F3332500BBFFCD /* StretchyController.swift in Sources */,
 				C164661C22F3149A00BBFFCD /* StretchyTableController.swift in Sources */,
-				C1689F8622F41B4B00E647F9 /* DiscriptionCell.swift in Sources */,
 				C162C2B522F266BD000C346C /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
