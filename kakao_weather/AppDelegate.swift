@@ -14,28 +14,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        
+
         //UserDefaults를 활용하여 상황에 따라 초기화면 변화
         self.window = UIWindow(frame: UIScreen.main.bounds)
-        if UserDefaults.standard.string(forKey: "lat") != nil{
-            
+        if UserDefaults.standard.string(forKey: "lat") != nil {
+
             let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
             let viewcontroller = mainStoryboard.instantiateViewController(withIdentifier: "StretchyController")
             self.window?.rootViewController = viewcontroller
             self.window?.makeKeyAndVisible()
             return true
-        }
-        else{
+        } else {
             let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
             let viewcontroller = mainStoryboard.instantiateViewController(withIdentifier: "NaVi")
             self.window?.rootViewController = viewcontroller
             self.window?.makeKeyAndVisible()
             return true
         }
-        
+
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
@@ -60,6 +58,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
-
 }
-

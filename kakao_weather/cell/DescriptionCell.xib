@@ -33,7 +33,7 @@
                             <constraint firstAttribute="height" constant="0.5" id="QWs-Jg-BMn"/>
                         </constraints>
                     </view>
-                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="오늘: 날씨 한때 흐림, 최고 기온-34도, 최저기온-25도입니다." textAlignment="natural" adjustsFontForContentSizeCategory="YES" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VpT-EL-Df1">
+                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="오늘: 날씨 한때 흐림, 최고 기온-34도, 최저기온-25도입니다." textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VpT-EL-Df1">
                         <rect key="frame" x="18" y="8" width="339" height="53.5"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

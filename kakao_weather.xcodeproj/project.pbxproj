@@ -22,6 +22,7 @@
 		C1689F8B22F41F0300E647F9 /* EtcViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1689F8922F41F0300E647F9 /* EtcViewCell.xib */; };
 		C1689F9222F4248000E647F9 /* CollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1689F9022F4248000E647F9 /* CollectionCell.swift */; };
 		C1689F9322F4248000E647F9 /* CollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1689F9122F4248000E647F9 /* CollectionCell.xib */; };
+		C19A8BAD22F8486A008B7B77 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = C19A8BAC22F8486A008B7B77 /* .swiftlint.yml */; };
 		C1A9F5DC22F6E4AD00CB8E87 /* DescriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1A9F5DA22F6E4AD00CB8E87 /* DescriptionCell.swift */; };
 		C1A9F5DD22F6E4AD00CB8E87 /* DescriptionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C1A9F5DB22F6E4AD00CB8E87 /* DescriptionCell.xib */; };
 /* End PBXBuildFile section */
@@ -45,6 +46,7 @@
 		C1689F8922F41F0300E647F9 /* EtcViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EtcViewCell.xib; sourceTree = "<group>"; };
 		C1689F9022F4248000E647F9 /* CollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionCell.swift; sourceTree = "<group>"; };
 		C1689F9122F4248000E647F9 /* CollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CollectionCell.xib; sourceTree = "<group>"; };
+		C19A8BAC22F8486A008B7B77 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = "<group>"; };
 		C1A9F5DA22F6E4AD00CB8E87 /* DescriptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionCell.swift; sourceTree = "<group>"; };
 		C1A9F5DB22F6E4AD00CB8E87 /* DescriptionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DescriptionCell.xib; sourceTree = "<group>"; };
 		CE22684044950C46CF77F210 /* Pods_kakao_weather.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_kakao_weather.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -73,6 +75,7 @@
 		C162C2A822F266BD000C346C = {
 			isa = PBXGroup;
 			children = (
+				C19A8BAC22F8486A008B7B77 /* .swiftlint.yml */,
 				C162C2B322F266BD000C346C /* kakao_weather */,
 				C162C2B222F266BD000C346C /* Products */,
 				D5AE98BC38BBF862E000C296 /* Pods */,
@@ -141,6 +144,7 @@
 				C162C2AE22F266BD000C346C /* Frameworks */,
 				C162C2AF22F266BD000C346C /* Resources */,
 				2900C17B68EAA9B66FA69B24 /* [CP] Embed Pods Frameworks */,
+				C19A8BA922F8471F008B7B77 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -189,6 +193,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C19A8BAD22F8486A008B7B77 /* .swiftlint.yml in Resources */,
 				C1A9F5DD22F6E4AD00CB8E87 /* DescriptionCell.xib in Resources */,
 				C162C2BF22F266BF000C346C /* LaunchScreen.storyboard in Resources */,
 				C162C2BC22F266BF000C346C /* Assets.xcassets in Resources */,
@@ -240,6 +245,23 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
+		};
+		C19A8BA922F8471F008B7B77 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "${PODS_ROOT}/SwiftLint/swiftlint autocorrect\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 

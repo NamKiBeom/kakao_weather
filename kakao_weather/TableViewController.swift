@@ -10,12 +10,11 @@ import UIKit
 import MapKit
 import Alamofire
 
-
 class TableViewController: UITableViewController {
-    var resultSearchController:UISearchController? = nil
-    
-    var matchingItems:[MKMapItem] = []
-    var mapView: MKMapView? = nil
+    var resultSearchController: UISearchController?
+
+    var matchingItems: [MKMapItem] = []
+    var mapView: MKMapView?
     var latselect = 1.0
     var lonselect = 1.0
     var subtitle = ""
@@ -24,11 +23,10 @@ class TableViewController: UITableViewController {
         super.viewDidLoad()
     }
 
-
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return matchingItems.count
     }
-    
+
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell")!
         let selectedItem = matchingItems[indexPath.row].placemark
@@ -37,9 +35,9 @@ class TableViewController: UITableViewController {
         cell.detailTextLabel?.text = selectedItem.title
         return cell
     }
-    
+
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+
         //선택 동작 - 위도 경도 추출
         let selectedItem = matchingItems[indexPath.row].placemark
         latselect = selectedItem.coordinate.latitude
@@ -49,20 +47,20 @@ class TableViewController: UITableViewController {
         subtitle = selectedItem.name!
         performSegue(withIdentifier: "back", sender: self)
     }
-    
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let rvc = segue.destination as? StretchyController{
+        if let rvc = segue.destination as? StretchyController {
             rvc.LocateTitle = subtitle
             rvc.lat = self.latselect
             rvc.lon = self.lonselect
-            
+
             UserDefaults.standard.set("\(self.latselect)", forKey: "lat")
             UserDefaults.standard.set("\(self.lonselect)", forKey: "lon")
-            UserDefaults.standard.set(subtitle,forKey: "Name")
+            UserDefaults.standard.set(subtitle, forKey: "Name")
         }
     }
-    
-    func parseAddress(selectedItem:MKPlacemark) -> String {
+
+    func parseAddress(selectedItem: MKPlacemark) -> String {
         // put a space between "4" and "Melrose Place"
         let firstSpace = (selectedItem.subThoroughfare != nil && selectedItem.thoroughfare != nil) ? " " : ""
         // put a comma between street and city/state
@@ -70,7 +68,7 @@ class TableViewController: UITableViewController {
         // put a space between "Washington" and "DC"
         let secondSpace = (selectedItem.subAdministrativeArea != nil && selectedItem.administrativeArea != nil) ? " " : ""
         let addressLine = String(
-            format:"%@%@%@%@%@%@%@",
+            format: "%@%@%@%@%@%@%@",
             // state
             selectedItem.administrativeArea ?? "",
             // city
@@ -105,5 +103,5 @@ extension TableViewController: UISearchResultsUpdating {
             self.tableView.reloadData()
         }
     }
-    
+
 }

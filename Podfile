@@ -6,6 +6,7 @@ target 'kakao_weather' do
   use_frameworks!
 
   pod 'Alamofire', '~> 4.4'
+  pod 'SwiftLint'
 
   # Pods for kakao_weather
 
