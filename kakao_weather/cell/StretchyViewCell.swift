@@ -12,8 +12,7 @@ class StretchyViewCell: UITableViewCell {
 
     @IBOutlet weak var day: UILabel!
     @IBOutlet weak var max: UILabel!
-    @IBOutlet weak var min: UILabel!
-    
+    @IBOutlet weak var min: UILabel!    
     @IBOutlet weak var weather: UIImageView!
     
     override func awakeFromNib() {

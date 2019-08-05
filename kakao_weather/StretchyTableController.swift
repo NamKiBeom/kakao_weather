@@ -7,17 +7,21 @@
 //
 
 import UIKit
+import Alamofire
 
 class StretchyTableController: UITableViewController{
     var StcollectionView : UICollectionView? = nil
     var StUIView : UIView? = nil
     var separator : UIView? = nil
     var separatorB : UIView? = nil
+    var firstdt = forecastinfo[0].list[0].dt
+    var dayArray = ["일요일","월요일","화요일","수요일","목요일","금요일","토요일"]
+    
+    
     //2ac1bbe21fb06a301149057f64c0a926
     override func viewDidLoad() {
         super.viewDidLoad()
         var ks:Int = 1
-        
         if view.frame.height >= 768{
             ks = 430
         }
@@ -29,7 +33,6 @@ class StretchyTableController: UITableViewController{
         tableView.insetsContentViewsToSafeArea == false
         tableView.separatorStyle = .none
         
-        print(currentinfo[0])
         //커스텀 테이블뷰를 구현하기 위한 수단
         //새로운 클래스를 만들어서 연결함
         let cellNib = UINib.init(nibName: "StretchyViewCell", bundle: nil)
@@ -49,13 +52,38 @@ class StretchyTableController: UITableViewController{
         if indexPath.row < 5
         {
             let cell = tableView.dequeueReusableCell(withIdentifier: "cell1") as! StretchyViewCell
-            cell.weather?.image = UIImage(named: "icons8-light-snow-50")
+            
+            var i = 0
+            while(true){
+                
+                if firstdt == forecastinfo[0].list[i].dt{                cell.weather?.downloadImageFrom("http://openweathermap.org/img/wn/\(forecastinfo[0].list[i].weather[0].icon)@2x.png", contentMode: .scaleAspectFill)
+                    
+                    let cal = Calendar(identifier: .gregorian)
+                    let now = Date()
+                    let comps = cal.dateComponents([.weekday], from: now)
+                    
+                    if comps.weekday!+indexPath.row <= 7{
+                        cell.day.text = dayArray[comps.weekday!+indexPath.row-1]
+                    }
+                    else{
+                        cell.day.text = dayArray[comps.weekday!+indexPath.row-8]
+                    }
+                    
+                    cell.max.text = String(Int(ceil(forecastinfo[0].list[i].main.temp_max-273.15)))
+                    cell.min.text = String(Int(ceil(forecastinfo[0].list[i].main.temp_min-273.15)))
+                    
+                    firstdt = firstdt + 86400
+                    break
+                }
+                
+                i = i+1
+            }
             return cell
         }
         else if indexPath.row == 5
         {
             let cell = tableView.dequeueReusableCell(withIdentifier: "DescriptionCell") as! DescriptionCell
-            cell.DescriptionText.text = "날씨요약: 현재 날씨는 "+요약+", 최고기온은 \(Int(ceil(currentinfo[0].main.temp_max-273.15))), 최저기온은 \(Int(ceil(currentinfo[0].main.temp_min-273.15)))입니다."
+            cell.DescriptionText.text = "날씨요약: 현재 날씨는 "+요약+", 최고기온은 \(Int(ceil(currentinfo[0].main.temp_max-273.15)))º, 최저기온은 \(Int(ceil(currentinfo[0].main.temp_min-273.15)))º입니다."
             return cell
         }
         else
@@ -65,6 +93,8 @@ class StretchyTableController: UITableViewController{
             cell.smallLabel2.shadowColor = .gray
             cell.bigLabel1.shadowColor = .gray
             cell.bigLabel2.shadowColor = .gray
+            
+            cell.bigLabel1.adjustsFontSizeToFitWidth = true
             if indexPath.row == 6
             {
                 cell.smallLabel1.text = "바람속도"
@@ -137,7 +167,7 @@ class StretchyTableController: UITableViewController{
     }
 
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        scrollView.backgroundColor = UIColor.init(netHex: 0x4aa8d8)
+        scrollView.backgroundColor = UIColor.init(netHex: 0x403631)
         scrollView.showsVerticalScrollIndicator = false
         let y = -scrollView.contentOffset.y//지정한 인셋의 값
         let height = max(270*view.frame.height/768.0, y-(120*view.frame.height/768.0))
@@ -160,5 +190,36 @@ extension UIColor {
     
     convenience init(netHex:Int) {
         self.init(red:(netHex >> 16) & 0xff, green:(netHex >> 8) & 0xff, blue:netHex & 0xff)
+    }
+}
+extension UIImageView {
+    func downloadImageFrom(_ link:String, contentMode: UIView.ContentMode) {
+        URLSession.shared.dataTask( with: URL(string:link)!, completionHandler: {
+            (data, response, error) -> Void in
+            DispatchQueue.main.async {
+                self.contentMode =  contentMode
+                if let data = data { self.image = UIImage(data: data) }
+            }
+        }).resume()
+    }
+    
+    func downloadAndResizeImageFrom(_ link:String, contentMode: UIView.ContentMode ,newWidth:CGFloat) {
+        URLSession.shared.dataTask( with: URL(string:link)!, completionHandler: {
+            (data, response, error) -> Void in
+            DispatchQueue.main.async {
+                self.contentMode =  contentMode
+                if let data = data {
+                    if let tempImage = UIImage(data: data){
+                        let scale = newWidth / tempImage.size.width
+                        let newHeight = tempImage.size.height * scale
+                        UIGraphicsBeginImageContext(CGSize(width: newWidth, height: newHeight))
+                        tempImage.draw(in: CGRect(x: 0, y: 0, width: newWidth, height: newHeight))
+                        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+                        UIGraphicsEndImageContext()
+                        self.image = newImage
+                    }
+                }
+            }
+        }).resume()
     }
 }

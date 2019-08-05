@@ -37,23 +37,15 @@
                         <color key="textColor" cocoaTouchSystemColor="lightTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="오전 5:35" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nAk-yB-xdw">
-                        <rect key="frame" x="20" y="25" width="158" height="33"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="오전 5:35" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nAk-yB-xdw">
+                        <rect key="frame" x="20" y="27" width="158" height="31"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="158" id="94Z-IG-2Yt"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="27"/>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="25"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="오후 7:38" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gbj-1a-Qcf">
-                        <rect key="frame" x="205" y="25" width="150" height="33"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="150" id="W0y-kO-ebS"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="27"/>
-                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <nil key="highlightedColor"/>
+                        <color key="shadowColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fve-S0-h15">
                         <rect key="frame" x="20" y="64" width="335" height="0.5"/>
@@ -62,19 +54,29 @@
                             <constraint firstAttribute="height" constant="0.5" id="oLA-au-xgb"/>
                         </constraints>
                     </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="오후 7:38" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Gbj-1a-Qcf">
+                        <rect key="frame" x="210" y="27" width="150" height="31"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="150" id="5Un-s3-DP0"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="25"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                        <color key="shadowColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </label>
                 </subviews>
                 <constraints>
                     <constraint firstItem="nAk-yB-xdw" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="0wc-66-GDa"/>
-                    <constraint firstAttribute="trailing" secondItem="Gbj-1a-Qcf" secondAttribute="trailing" constant="20" id="1u2-7w-tWg"/>
                     <constraint firstAttribute="trailing" secondItem="Qjx-jh-DOE" secondAttribute="trailing" constant="123" id="8vc-3H-pSJ"/>
                     <constraint firstItem="Qjx-jh-DOE" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="6" id="KGB-GM-T5I"/>
                     <constraint firstAttribute="bottom" secondItem="fve-S0-h15" secondAttribute="bottom" id="SoG-AW-Wfl"/>
                     <constraint firstItem="fve-S0-h15" firstAttribute="top" secondItem="nAk-yB-xdw" secondAttribute="bottom" constant="6" id="afJ-AY-X8e"/>
                     <constraint firstAttribute="trailing" secondItem="fve-S0-h15" secondAttribute="trailing" constant="20" id="aie-BM-1kG"/>
+                    <constraint firstItem="fve-S0-h15" firstAttribute="top" secondItem="Gbj-1a-Qcf" secondAttribute="bottom" constant="6" id="aoS-SS-8r5"/>
                     <constraint firstItem="Lnk-o3-qak" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="ch7-3a-tcL"/>
                     <constraint firstItem="Lnk-o3-qak" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="6" id="fZW-7P-JRt"/>
-                    <constraint firstItem="fve-S0-h15" firstAttribute="top" secondItem="Gbj-1a-Qcf" secondAttribute="bottom" constant="6" id="gZO-lv-mug"/>
                     <constraint firstItem="fve-S0-h15" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="pAB-yy-GcM"/>
+                    <constraint firstAttribute="trailing" secondItem="Gbj-1a-Qcf" secondAttribute="trailing" constant="15" id="yun-6m-Le0"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

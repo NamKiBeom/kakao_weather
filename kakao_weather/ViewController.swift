@@ -14,16 +14,15 @@ class ViewController: UIViewController {
     var resultSearchController:UISearchController? = nil
     let locationManager = CLLocationManager()
     @IBOutlet weak var mapView: MKMapView!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         mapView.isHidden = true
         //위치 셋팅
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
         locationManager.requestLocation()
+        navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.init(netHex: 0x403631)]
         
         //검색 결과 컨트롤러와 연결(TableViewController)
         let locationSearchTable = storyboard!.instantiateViewController(withIdentifier: "TableViewController") as! TableViewController
@@ -32,16 +31,13 @@ class ViewController: UIViewController {
 
         
         //검색창 구성 및 탐색 모음 포함
-        let searchBar = resultSearchController!.searchBar
-        searchBar.sizeToFit()
-        searchBar.placeholder = "위치를 검색해주세요!"
-        navigationItem.titleView = resultSearchController?.searchBar
-        searchBar.tintColor = .white
-        searchBar.barTintColor = .lightGray
-        searchBar.barStyle = .black
+        resultSearchController?.searchBar.tintColor = UIColor.init(netHex: 0x403631)
+        navigationItem.searchController = resultSearchController
+        UIBarButtonItem.appearance(whenContainedInInstancesOf: [UISearchBar.self]).title = "취소"
+        resultSearchController?.searchBar.placeholder = "Search MapKit"
         
         //검색 동작 설정
-        resultSearchController?.hidesNavigationBarDuringPresentation = false
+        resultSearchController?.hidesNavigationBarDuringPresentation = true
         resultSearchController?.dimsBackgroundDuringPresentation = true
         definesPresentationContext = true
 
@@ -78,4 +74,26 @@ extension ViewController : CLLocationManagerDelegate {
         
     }
     
+}
+extension UISearchBar {
+    
+    func getTextField() -> UITextField? { return value(forKey: "searchField") as? UITextField }
+    func setText(color: UIColor) { if let textField = getTextField() { textField.textColor = color } }
+    
+    func setTextField(color: UIColor) {
+        guard let textField = getTextField() else { return }
+        switch searchBarStyle {
+        case .minimal:
+            textField.layer.backgroundColor = color.cgColor
+            textField.layer.cornerRadius = 6
+        case .prominent, .default: textField.backgroundColor = color
+        @unknown default: break
+        }
+    }
+    
+    func setSearchImage(color: UIColor) {
+        guard let imageView = getTextField()?.leftView as? UIImageView else { return }
+        imageView.tintColor = color
+        imageView.image = imageView.image?.withRenderingMode(.alwaysTemplate)
+    }
 }

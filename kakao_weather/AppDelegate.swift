@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,7 +17,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        return true
+        
+        //UserDefaults를 활용하여 상황에 따라 초기화면 변화
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+        if UserDefaults.standard.string(forKey: "lat") != nil{
+            
+            let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let viewcontroller = mainStoryboard.instantiateViewController(withIdentifier: "StretchyController")
+            self.window?.rootViewController = viewcontroller
+            self.window?.makeKeyAndVisible()
+            return true
+        }
+        else{
+            let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let viewcontroller = mainStoryboard.instantiateViewController(withIdentifier: "NaVi")
+            self.window?.rootViewController = viewcontroller
+            self.window?.makeKeyAndVisible()
+            return true
+        }
+        
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

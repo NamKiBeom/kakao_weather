@@ -44,6 +44,8 @@ class TableViewController: UITableViewController {
         let selectedItem = matchingItems[indexPath.row].placemark
         latselect = selectedItem.coordinate.latitude
         lonselect = selectedItem.coordinate.longitude
+        print(latselect)
+        print(lonselect)
         subtitle = selectedItem.name!
         performSegue(withIdentifier: "back", sender: self)
     }
@@ -53,6 +55,10 @@ class TableViewController: UITableViewController {
             rvc.LocateTitle = subtitle
             rvc.lat = self.latselect
             rvc.lon = self.lonselect
+            
+            UserDefaults.standard.set("\(self.latselect)", forKey: "lat")
+            UserDefaults.standard.set("\(self.lonselect)", forKey: "lon")
+            UserDefaults.standard.set(subtitle,forKey: "Name")
         }
     }
     
