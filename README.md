@@ -10,3 +10,5 @@ collectionView와 TableView를 연동하여 ScrollView에 접목시켜 Stretch �
 AlamoFire를 사용하여 HTTP 통신
 
 Codable을 이용하여 JSON 파싱
+
+![Search](.image/Search.jpeg) ![SearchTable](.image/SearchTable.jpeg) ![Result](.image/Result.jpeg)
