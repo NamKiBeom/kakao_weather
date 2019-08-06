@@ -11,11 +11,12 @@ AlamoFire를 사용하여 HTTP 통신
 
 Codable을 이용하여 JSON 파싱
 
-<Screen Shot>
+-Screen Shot
 
 <img src=./image/Search.jpeg width="30%"><img src=./image/SearchTable.jpeg width="30%"><img src=./image/Result.jpeg width="30%">
 
 -실행순서
+
 왼쪽부터 1,2,3으로 번호를 부여한다.
 
 1. 처음 어플리케이션을 실행하면 1번화면이 실행된다. 
