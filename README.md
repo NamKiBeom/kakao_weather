@@ -1,15 +1,16 @@
-* kakao_weather
-KakaoPay_homework
+# kakao_weather
 
-OpenWeather API를 사용한 날씨 어플리케이션
+* KakaoPay_homework
 
-MapKit을 활용한 위치검색(lat,lon)
+* OpenWeather API를 사용한 날씨 어플리케이션
 
-collectionView와 TableView를 연동하여 ScrollView에 접목시켜 Stretch 효과
+* MapKit을 활용한 위치검색(lat,lon)
 
-AlamoFire를 사용하여 HTTP 통신
+* collectionView와 TableView를 연동하여 ScrollView에 접목시켜 Stretch 효과
 
-Codable을 이용하여 JSON 파싱
+* AlamoFire를 사용하여 HTTP 통신
+
+* Codable을 이용하여 JSON 파싱
 
 # 사용가능한 Device
 아이폰 모두(아이패드 x)
