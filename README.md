@@ -11,8 +11,8 @@ AlamoFire를 사용하여 HTTP 통신
 
 Codable을 이용하여 JSON 파싱
 
-
-
+# 사용가능한 Device
+아이폰 모두(아이패드 x)
 
 # Screen Shot
 
