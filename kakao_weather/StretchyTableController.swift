@@ -71,6 +71,12 @@ class StretchyTableController: UITableViewController {
                 i = i+1
             }
 
+            //current 정보로 대체
+            if indexPath.row == 0 {
+                cell.max.text = "\(Int(ceil(currentinfo[0].main.temp_max-273.15)))"
+                cell.min.text = "\(Int(ceil(currentinfo[0].main.temp_min-273.15)))"
+            }
+
             return cell
         } else if indexPath.row == 5 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "DescriptionCell") as! DescriptionCell
