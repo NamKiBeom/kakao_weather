@@ -11,4 +11,6 @@ AlamoFire를 사용하여 HTTP 통신
 
 Codable을 이용하여 JSON 파싱
 
-![Search](./image/Search.jpeg){: width="50%" height="50%"} ![SearchTable](./image/SearchTable.jpeg) ![Result](./image/Result.jpeg)
+<img src=./image/Search.jpeg width="60%">
+
+![Search](./image/Search.jpeg) ![SearchTable](./image/SearchTable.jpeg) ![Result](./image/Result.jpeg)
