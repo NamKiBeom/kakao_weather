@@ -1,4 +1,4 @@
-# kakao_weather
+* kakao_weather
 KakaoPay_homework
 
 OpenWeather API를 사용한 날씨 어플리케이션
