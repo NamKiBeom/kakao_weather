@@ -16,6 +16,7 @@ class StretchyTableController: UITableViewController {
     var separatorB: UIView?
     var firstdt = forecastinfo[0].list[0].dt
     var dayArray = ["일요일", "월요일", "화요일", "수요일", "목요일", "금요일", "토요일"]
+    var i = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,9 +43,9 @@ class StretchyTableController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row < 5 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "StretchyViewCell") as! StretchyViewCell
-
+            cell.max.text = String(Int(ceil(forecastinfo[0].list[i].main.temp_max-273.15)))
+            cell.min.text = String(Int(ceil(forecastinfo[0].list[i].main.temp_min-273.15)))
             //현재 시점으로부터 하루 단위로 날씨 정보 및 아이콘 추출
-            var i = 0
             while(true) {
                 if firstdt == forecastinfo[0].list[i].dt {                cell.weather?.downloadImageFrom("http://openweathermap.org/img/wn/\(forecastinfo[0].list[i].weather[0].icon)@2x.png", contentMode: .scaleAspectFill)
 
@@ -57,15 +58,19 @@ class StretchyTableController: UITableViewController {
                     } else {
                         cell.day.text = dayArray[comps.weekday!+indexPath.row-8]
                     }
-
-                    cell.max.text = String(Int(ceil(forecastinfo[0].list[i].main.temp_max-273.15)))
-                    cell.min.text = String(Int(ceil(forecastinfo[0].list[i].main.temp_min-273.15)))
                     firstdt = firstdt + 86400
                     break
-
+                } else {
+                    if Int(cell.max.text!)! < Int(ceil(forecastinfo[0].list[i].main.temp_max-273.15)) {
+                        cell.max.text = String(Int(ceil(forecastinfo[0].list[i].main.temp_max-273.15)))
+                    }
+                    if Int(cell.min.text!)! > Int(ceil(forecastinfo[0].list[i].main.temp_min-273.15)) {
+                        cell.min.text = String(Int(ceil(forecastinfo[0].list[i].main.temp_min-273.15)))
+                    }
                 }
                 i = i+1
             }
+
             return cell
         } else if indexPath.row == 5 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "DescriptionCell") as! DescriptionCell
