@@ -12,9 +12,13 @@ AlamoFire를 사용하여 HTTP 통신
 Codable을 이용하여 JSON 파싱
 
 
+
+
 -Screen Shot
 
 <img src=./image/Search.jpeg width="30%"><img src=./image/SearchTable.jpeg width="30%"><img src=./image/Result.jpeg width="30%">
+
+
 
 
 -실행순서
@@ -30,6 +34,8 @@ Codable을 이용하여 JSON 파싱
 4. 3번화면이 실행된다.
 
 5. 어플리케이션을 종료할 경우 내가 전에 검색했던 위치가 저장되어 바로 3번화면이 로드된다.
+
+
 
 
 -주의사항
