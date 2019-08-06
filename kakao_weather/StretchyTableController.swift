@@ -17,24 +17,18 @@ class StretchyTableController: UITableViewController {
     var firstdt = forecastinfo[0].list[0].dt
     var dayArray = ["일요일", "월요일", "화요일", "수요일", "목요일", "금요일", "토요일"]
 
-    var ks: Int = 1
-
-    //2ac1bbe21fb06a301149057f64c0a926
     override func viewDidLoad() {
         super.viewDidLoad()
-        if view.frame.height >= 768 {
-            ks = 430
-        } else {
-            ks = 480
-        }
+
+        //top 여백 생성
         tableView.contentInset = UIEdgeInsets(top: 440*view.frame.height/768.0, left: 0, bottom: 0, right: 0)
         tableView.insetsContentViewsToSafeArea = false
         tableView.separatorStyle = .none
 
-        //커스텀 테이블뷰를 구현하기 위한 수단
-        //새로운 클래스를 만들어서 연결함
+        //custom tableViewCell을 구현하기 위한 수단
+        //새로운 클래스를 만들어서 연결함 - cell folder
         let cellNib = UINib.init(nibName: "StretchyViewCell", bundle: nil)
-        tableView.register(cellNib, forCellReuseIdentifier: "cell1")
+        tableView.register(cellNib, forCellReuseIdentifier: "StretchyViewCell")
         let cellNib1 = UINib.init(nibName: "DescriptionCell", bundle: nil)
         tableView.register(cellNib1, forCellReuseIdentifier: "DescriptionCell")
         let cellNib2 = UINib.init(nibName: "EtcViewCell", bundle: nil)
@@ -42,17 +36,16 @@ class StretchyTableController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return 10
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row < 5 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "cell1") as! StretchyViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "StretchyViewCell") as! StretchyViewCell
 
+            //현재 시점으로부터 하루 단위로 날씨 정보 및 아이콘 추출
             var i = 0
             while(true) {
-
                 if firstdt == forecastinfo[0].list[i].dt {                cell.weather?.downloadImageFrom("http://openweathermap.org/img/wn/\(forecastinfo[0].list[i].weather[0].icon)@2x.png", contentMode: .scaleAspectFill)
 
                     let cal = Calendar(identifier: .gregorian)
@@ -67,11 +60,10 @@ class StretchyTableController: UITableViewController {
 
                     cell.max.text = String(Int(ceil(forecastinfo[0].list[i].main.temp_max-273.15)))
                     cell.min.text = String(Int(ceil(forecastinfo[0].list[i].main.temp_min-273.15)))
-
                     firstdt = firstdt + 86400
                     break
-                }
 
+                }
                 i = i+1
             }
             return cell
@@ -104,24 +96,23 @@ class StretchyTableController: UITableViewController {
                 dateFormatter.dateFormat = "HH:mm"
                 dateFormatter.timeZone = NSTimeZone(name: "KST") as TimeZone?
 
-                let dateFormatter1 = DateFormatter()
-                dateFormatter1.dateFormat = "HH"
-                dateFormatter1.timeZone = NSTimeZone(name: "KST") as TimeZone?
-                //오후 계산
+                let dateFormatterhour = DateFormatter()
+                dateFormatterhour.dateFormat = "HH"
+                dateFormatterhour.timeZone = NSTimeZone(name: "KST") as TimeZone?
 
-                let sunriseString1 = dateFormatter1.string(from: NSDate(timeIntervalSince1970: Double(currentinfo[0].sys.sunrise)) as Date)
-                let sunsetString1 = dateFormatter1.string(from: NSDate(timeIntervalSince1970: Double(currentinfo[0].sys.sunset)) as Date)
+                let sunriseStringhour = dateFormatterhour.string(from: NSDate(timeIntervalSince1970: Double(currentinfo[0].sys.sunrise)) as Date)
+                let sunsetStringhour = dateFormatterhour.string(from: NSDate(timeIntervalSince1970: Double(currentinfo[0].sys.sunset)) as Date)
 
                 cell.smallLabel1.text = "일출"
                 cell.smallLabel2.text = "일몰"
-                if (Int(sunriseString1) ?? nil)! > 12 {
+                if (Int(sunriseStringhour) ?? nil)! > 12 {
                     let sunriseString = dateFormatter.string(from: NSDate(timeIntervalSince1970: Double(currentinfo[0].sys.sunrise)-3600*12) as Date)
                     cell.bigLabel1.text = "오후 \(sunriseString)"
                 } else {
                     let sunriseString = dateFormatter.string(from: NSDate(timeIntervalSince1970: Double(currentinfo[0].sys.sunrise)) as Date)
                     cell.bigLabel1.text = "오전 \(sunriseString)"
                 }
-                if (Int(sunsetString1) ?? nil)! > 12 {
+                if (Int(sunsetStringhour) ?? nil)! > 12 {
                     let sunsetString = dateFormatter.string(from: NSDate(timeIntervalSince1970: Double(currentinfo[0].sys.sunset)-3600*12) as Date)
                     cell.bigLabel2.text = "오후 \(sunsetString)"
                 } else {
@@ -130,6 +121,7 @@ class StretchyTableController: UITableViewController {
                 }
                 return cell
             } else {
+                //toolbar로 가려지는 부분에 대해 공간 확보를 위한 cell
                 cell.smallLabel1.isHidden = true
                 cell.smallLabel2.isHidden = true
                 cell.bigLabel1.isHidden = true
@@ -163,6 +155,7 @@ class StretchyTableController: UITableViewController {
         separatorB?.frame = CGRect(x: 0, y: height+(120*view.frame.height/768.0)-1, width: view.frame.width, height: 0.7)
     }
 }
+//16진수로 색상지정을 위한 설정
 extension UIColor {
     convenience init(red: Int, green: Int, blue: Int) {
         assert(red >= 0 && red <= 255, "Invalid red component")
@@ -176,6 +169,7 @@ extension UIColor {
         self.init(red: (netHex >> 16) & 0xff, green: (netHex >> 8) & 0xff, blue: netHex & 0xff)
     }
 }
+//URL 이미지를 다운받기 위한 설정
 extension UIImageView {
     func downloadImageFrom(_ link: String, contentMode: UIView.ContentMode) {
         URLSession.shared.dataTask( with: URL(string: link)!, completionHandler: {
@@ -183,26 +177,6 @@ extension UIImageView {
             DispatchQueue.main.async {
                 self.contentMode =  contentMode
                 if let data = data { self.image = UIImage(data: data) }
-            }
-        }).resume()
-    }
-
-    func downloadAndResizeImageFrom(_ link: String, contentMode: UIView.ContentMode, newWidth: CGFloat) {
-        URLSession.shared.dataTask( with: URL(string: link)!, completionHandler: {
-            (data, _, _) -> Void in
-            DispatchQueue.main.async {
-                self.contentMode =  contentMode
-                if let data = data {
-                    if let tempImage = UIImage(data: data) {
-                        let scale = newWidth / tempImage.size.width
-                        let newHeight = tempImage.size.height * scale
-                        UIGraphicsBeginImageContext(CGSize(width: newWidth, height: newHeight))
-                        tempImage.draw(in: CGRect(x: 0, y: 0, width: newWidth, height: newHeight))
-                        let newImage = UIGraphicsGetImageFromCurrentImageContext()
-                        UIGraphicsEndImageContext()
-                        self.image = newImage
-                    }
-                }
             }
         }).resume()
     }

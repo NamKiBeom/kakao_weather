@@ -22,6 +22,8 @@ class ViewController: UIViewController {
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
         locationManager.requestLocation()
+
+        //네비게이션 폰트 색상 지정
         navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.init(netHex: 0x403631)]
 
         //검색 결과 컨트롤러와 연결(TableViewController)
@@ -54,45 +56,17 @@ class ViewController: UIViewController {
 
 }
 extension ViewController: CLLocationManagerDelegate {
-
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print("error:: \(error.localizedDescription)")
     }
-
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         if status == .authorizedWhenInUse {
             locationManager.requestLocation()
         }
     }
-
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-
         if locations.first != nil {
             print("location:: \(locations)")
         }
-
-    }
-
-}
-extension UISearchBar {
-
-    func getTextField() -> UITextField? { return value(forKey: "searchField") as? UITextField }
-    func setText(color: UIColor) { if let textField = getTextField() { textField.textColor = color } }
-
-    func setTextField(color: UIColor) {
-        guard let textField = getTextField() else { return }
-        switch searchBarStyle {
-        case .minimal:
-            textField.layer.backgroundColor = color.cgColor
-            textField.layer.cornerRadius = 6
-        case .prominent, .default: textField.backgroundColor = color
-        @unknown default: break
-        }
-    }
-
-    func setSearchImage(color: UIColor) {
-        guard let imageView = getTextField()?.leftView as? UIImageView else { return }
-        imageView.tintColor = color
-        imageView.image = imageView.image?.withRenderingMode(.alwaysTemplate)
     }
 }

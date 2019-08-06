@@ -37,13 +37,11 @@ class TableViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
         //선택 동작 - 위도 경도 추출
         let selectedItem = matchingItems[indexPath.row].placemark
         latselect = selectedItem.coordinate.latitude
         lonselect = selectedItem.coordinate.longitude
-        print(latselect)
-        print(lonselect)
+
         subtitle = selectedItem.name!
         performSegue(withIdentifier: "back", sender: self)
     }
@@ -59,31 +57,6 @@ class TableViewController: UITableViewController {
             UserDefaults.standard.set(subtitle, forKey: "Name")
         }
     }
-
-    func parseAddress(selectedItem: MKPlacemark) -> String {
-        // put a space between "4" and "Melrose Place"
-        let firstSpace = (selectedItem.subThoroughfare != nil && selectedItem.thoroughfare != nil) ? " " : ""
-        // put a comma between street and city/state
-        let comma = (selectedItem.subThoroughfare != nil || selectedItem.thoroughfare != nil) && (selectedItem.subAdministrativeArea != nil || selectedItem.administrativeArea != nil) ? ", " : ""
-        // put a space between "Washington" and "DC"
-        let secondSpace = (selectedItem.subAdministrativeArea != nil && selectedItem.administrativeArea != nil) ? " " : ""
-        let addressLine = String(
-            format: "%@%@%@%@%@%@%@",
-            // state
-            selectedItem.administrativeArea ?? "",
-            // city
-            selectedItem.locality ?? "",
-            secondSpace,
-            // street name
-            selectedItem.thoroughfare ?? "",
-            comma,
-            // street number
-            selectedItem.subThoroughfare ?? "",
-            firstSpace
-        )
-        return addressLine
-    }
-
 }
 extension TableViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
@@ -99,9 +72,7 @@ extension TableViewController: UISearchResultsUpdating {
                 return
             }
             self.matchingItems = response.mapItems
-
             self.tableView.reloadData()
         }
     }
-
 }

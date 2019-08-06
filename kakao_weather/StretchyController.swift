@@ -112,8 +112,7 @@ class StretchyController: UIViewController, UICollectionViewDataSource, UICollec
         lat = UserDefaults.standard.double(forKey: "lat")
         lon = UserDefaults.standard.double(forKey: "lon")
         LocateTitle = UserDefaults.standard.string(forKey: "Name")!
-        print(lat)
-        print(lon)
+
         let url5day = "http://api.openweathermap.org/data/2.5/forecast?lat=\(lat)&lon=\(lon)&APPID=2ac1bbe21fb06a301149057f64c0a926"
 
        Alamofire.request(url5day, method: .post, encoding: URLEncoding.methodDependent, headers: [:]).responseString { (response) in
@@ -121,8 +120,6 @@ class StretchyController: UIViewController, UICollectionViewDataSource, UICollec
             do {
                 let data = try JSONDecoder().decode(forecast.self, from: responseData!)
                 forecastinfo.append(data)
-                print(1)
-
                 let url = "http://api.openweathermap.org/data/2.5/weather?lat=\(self.lat)&lon=\(self.lon)&APPID=2ac1bbe21fb06a301149057f64c0a926"
 
                 Alamofire.request(url, method: .post, encoding: URLEncoding.methodDependent, headers: [:]).responseString { (response) in
@@ -130,15 +127,16 @@ class StretchyController: UIViewController, UICollectionViewDataSource, UICollec
                     do {
                         let data = try JSONDecoder().decode(current.self, from: resData!)
                         currentinfo.append(data)
-                        print(2)
+
                         let StretchyTable = StretchyTableController()
                         self.addChild(StretchyTable)
+
                         //윗 부분 여백을 없애기 위한 좌표 지정
                         StretchyTable.tableView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height)
                         self.view.addSubview(StretchyTable.tableView)
-                        //collectionView 셀 속성 지정
+
+                        //collectionView 셀 속성 지정 및 간격 설정
                         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-                        //간격 조정
                         layout.sectionInset = .init(top: 5*self.view.frame.height/812, left: 10, bottom: 5*self.view.frame.height/812, right: 10)
                         layout.itemSize = CGSize(width: 65*self.view.frame.width/375.0, height: 110*self.view.frame.height/812.0)
                         layout.scrollDirection = .horizontal
@@ -160,7 +158,7 @@ class StretchyController: UIViewController, UICollectionViewDataSource, UICollec
                         testUIView.clipsToBounds = true
                         testUIView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: 359*self.view.frame.height/812.0)
 
-                        /////UILabel 코드로 설정
+                        //UILabel 코드로 설정
                         //메인 타이틀(위치)
                         let TextMain = UILabel(frame: CGRect(x: 0, y: 100*self.view.frame.height/812.0, width: self.view.frame.width, height: 50*self.view.frame.height/812.0))
                         TextMain.text = self.LocateTitle
@@ -221,6 +219,7 @@ class StretchyController: UIViewController, UICollectionViewDataSource, UICollec
                         let comps = cal.dateComponents([.weekday], from: now)
 
                         let dayLabel = UILabel(frame: CGRect(x: 20*self.view.frame.width/375.0, y: 315*self.view.frame.height/812.0, width: 55*self.view.frame.width/375.0, height: 30*self.view.frame.height/812.0))
+
                         if comps.weekday! == 1 {
                             dayLabel.text = "일요일"
                         } else if comps.weekday! == 2 {
@@ -236,6 +235,7 @@ class StretchyController: UIViewController, UICollectionViewDataSource, UICollec
                         } else if comps.weekday! == 7 {
                             dayLabel.text = "토요일"
                         }
+
                         dayLabel.textColor = .white
                         dayLabel.shadowColor = .gray
                         dayLabel.font = .systemFont(ofSize: 20*self.view.frame.height/812.0, weight: .medium)
@@ -263,6 +263,7 @@ class StretchyController: UIViewController, UICollectionViewDataSource, UICollec
                         testUIView.addSubview(todayLabel)
                         testUIView.addSubview(minTempo)
                         testUIView.addSubview(maxTempo)
+
                         //택스트 중앙 배치
                         TextMain.textAlignment = .center
                         mainDescription.textAlignment = .center
@@ -273,11 +274,14 @@ class StretchyController: UIViewController, UICollectionViewDataSource, UICollec
                         //toolbar
                         let toolbar = UIToolbar()
 
-                        if self.view.frame.height>=812 {
+                        if self.view.frame.height>=812 && self.view.frame.height<=896 {
                             toolbar.frame = CGRect(x: 0, y: 733*self.view.frame.height/812.0, width: self.view.frame.width, height: 60*self.view.frame.height/812.0)
+                        } else if self.view.frame.height>896 {
+                            toolbar.frame = CGRect(x: 0, y: 760*self.view.frame.height/812.0, width: self.view.frame.width, height: 45*self.view.frame.height/812.0)
                         } else {
                             toolbar.frame = CGRect(x: 0, y: 768*self.view.frame.height/812.0, width: self.view.frame.width, height: 45*self.view.frame.height/812.0)
                         }
+
                         let transButton = UIBarButtonItem(title: "재설정", style: .plain, target: self, action: #selector(self.reselectLocation))
                         transButton.accessibilityFrame = CGRect(x: 0, y: 5, width: 30, height: 30)
                         let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
@@ -307,7 +311,6 @@ class StretchyController: UIViewController, UICollectionViewDataSource, UICollec
                         StretchyTable.StcollectionView = collection
                         StretchyTable.separator = separatorLine
                         StretchyTable.separatorB = separatorLineB
-                        print(3)
                     } catch {
                         print(error)
                     }
@@ -318,10 +321,7 @@ class StretchyController: UIViewController, UICollectionViewDataSource, UICollec
         }
     }
 
-    override func viewDidAppear(_ animated: Bool) {
-    }
-
-    //화면전환
+    //화면전환,검색한 위치 정보 저장
     @objc func reselectLocation() {
         UserDefaults.standard.removeObject(forKey: "Name")
         UserDefaults.standard.removeObject(forKey: "lat")
@@ -334,21 +334,22 @@ class StretchyController: UIViewController, UICollectionViewDataSource, UICollec
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        print(4)
+
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionCell", for: indexPath) as! CollectionCell
-        let dateFormatter1 = DateFormatter()
-        dateFormatter1.dateFormat = "HH"
-        dateFormatter1.timeZone = NSTimeZone(name: "KST") as TimeZone?
-        let forecastDt = dateFormatter1.string(from: NSDate(timeIntervalSince1970: Double(forecastinfo[0].list[indexPath.row].dt)) as Date)
-        if (Int(forecastDt) ?? nil)! > 12 {
-            let forecastDt1 = dateFormatter1.string(from: NSDate(timeIntervalSince1970: Double(forecastinfo[0].list[indexPath.row].dt)-3600*12) as Date)
-            cell.timeLabel.text = "오후 \(forecastDt1)시"
+        let dateFormatterTime = DateFormatter()
+        dateFormatterTime.dateFormat = "HH"
+        dateFormatterTime.timeZone = NSTimeZone(name: "KST") as TimeZone?
+        let forecastDtAm = dateFormatterTime.string(from: NSDate(timeIntervalSince1970: Double(forecastinfo[0].list[indexPath.row].dt)) as Date)
+        if (Int(forecastDtAm) ?? nil)! > 12 {
+            let forecastDtPm = dateFormatterTime.string(from: NSDate(timeIntervalSince1970: Double(forecastinfo[0].list[indexPath.row].dt)-3600*12) as Date)
+            cell.timeLabel.text = "오후 \(forecastDtPm)시"
         } else {
-            cell.timeLabel.text = "오전 \(forecastDt)시"
+            cell.timeLabel.text = "오전 \(forecastDtAm)시"
         }
 
         cell.temLabel.text = "\(Int(ceil(forecastinfo[0].list[indexPath.row].main.temp-273.15)))"+"º"
-        cell.weatherImage.downloadImageFrom("http://openweathermap.org/img/wn/\(forecastinfo[0].list[indexPath.row].weather[0].icon)@2x.png", contentMode: .scaleAspectFit)
+
+    cell.weatherImage.downloadImageFrom("http://openweathermap.org/img/wn/\(forecastinfo[0].list[indexPath.row].weather[0].icon)@2x.png", contentMode: .scaleAspectFit)
 
         return cell
     }
